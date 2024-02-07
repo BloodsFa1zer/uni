@@ -1,0 +1,3 @@
+/Users/mishashevnuk/CLionProjects/laba6/cmake-build-debug/CMakeFiles/laba6.dir
+/Users/mishashevnuk/CLionProjects/laba6/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mishashevnuk/CLionProjects/laba6/cmake-build-debug/CMakeFiles/rebuild_cache.dir
