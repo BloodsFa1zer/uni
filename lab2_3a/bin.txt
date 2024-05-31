@@ -1,0 +1,116 @@
+//int checkIfDateIsValid(const string& text) {
+//    int value;
+//    bool cinFail;
+//    do {
+//        cinFail = false;
+//        cout << text;
+//        cin >> value;
+//        if (cin.fail()) {
+//            cerr << "\n Invalid input. Please enter a valid date. \n\n";
+//            cin.clear();
+//            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//            cinFail = true;
+//        }
+//    } while (cinFail);
+//    return value;
+//}
+
+//struct AppearanceTime {
+//    int year, month, day, hour, minute, second;
+//
+//    AppearanceTime(int year = int(), int month = int(), int day = int(), int hour = int(), int minute = int(), int second = int())
+//    {
+//        this->year = year;
+//        this->month = month;
+//        this->day = day;
+//        this->hour = hour;
+//        this->minute = minute;
+//        this->second = second;
+//    }
+//
+//    int howManyDaysInMonth(int thisMonth)
+//    {
+//        switch (thisMonth)
+//        {
+//            case 1: case 3: case 5: case 7: case 8: case 10: case 12: // for month that has 31 days
+//                return 31;
+//            case 4: case 6: case 9: case 11: // for month that has 30 days
+//                return 30;
+//            case 2: // check if the year is a leap, it will put 29 or 28 days for the February
+//                if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+//                    return 29;
+//                } else {
+//                    return 28;
+//                }
+//            default:  // if such month does not exist
+//                return 0;
+//        }
+//    }
+//
+//    AppearanceTime addDaysToDate(int days) {
+//        // Create a new date object and initialize it with the current date (*this)
+//        AppearanceTime resultDate = *this;
+//
+//        // Calculate the total number of days by adding the input days to the current day
+//        int totalDays = resultDate.day + days;
+//
+//        // Calculate the number of years to increment based on the total days
+//        int yearIncrement = (totalDays - 1) / 365; // Increment year if total days exceed a year
+//        resultDate.year += yearIncrement; // Increment the year
+//
+//        // Subtract the number of days due to the increment in years
+//        totalDays -= yearIncrement * 365;
+//
+//        int monthDays;
+//        // Loop until all days are consumed
+//        while (totalDays > 0) {
+//            // Determine the number of days in the current month
+//            monthDays = howManyDaysInMonth(resultDate.month);
+//
+//            // If the total days to add is less than or equal to the remaining days in the month
+//            if (totalDays <= monthDays - resultDate.day) {
+//                resultDate.day += totalDays; // Add remaining days to the current day
+//                totalDays = 0; // Set total days to zero to exit the loop
+//            } else { // If total days exceed the remaining days in the month
+//                // Subtract the remaining days in the month from the total days and adjust month and year
+//                totalDays -= monthDays - resultDate.day + 1;
+//                resultDate.day = 1; // Reset day to 1 for the next month
+//                resultDate.month++; // Move to the next month
+//                // If the month exceeds 12, reset to 1 and increment the year
+//                if (resultDate.month > 12) {
+//                    resultDate.month = 1;
+//                    resultDate.year++;
+//                }
+//            }
+//        }
+//        // Return the updated date
+//        return resultDate;
+//    }
+//
+//// Не дуже зрозумів як саме має вводитись час, тому зробив так
+////    void createDate() {
+////        do { this->year = checkIfDateIsValid("Enter year: "); } while (this->year < 2024);
+////        do { this->month = checkIfDateIsValid("Enter month: "); } while (this->month > 12 || this->month < 1);
+////        do { this->day = checkIfDateIsValid("Enter day: "); } while (this->day > howManyDaysInMonth(this->month) || this->day < 1);
+////        do { this->hour = checkIfDateIsValid("Enter hour: "); } while (this->hour > 24 || this->hour < 0);
+////        do { this->minute = checkIfDateIsValid("Enter minute: "); } while (this->minute > 59 || this->minute < 0);
+////        do { this->second = checkIfDateIsValid("Enter second: "); } while (this->second > 59 || this->second < 0);
+////    }
+//
+//    void printDateTime() {
+//        cout << "Date: " << year << "-" << month << "-" << day << " ";
+//        cout << "Time: " << hour << ":" << minute << ":" << second << endl;
+//    }
+//
+//
+//
+//    bool operator>(const AppearanceTime& input) const {
+//        if (year != input.year) return year > input.year;
+//        if (month != input.month) return month > input.month;
+//        if (day != input.day) return day > input.day;
+//        if (hour != input.hour) return hour > input.hour;
+//        if (minute != input.minute) return minute > input.minute;
+//        return second > input.second;
+//    }
+//
+//};
